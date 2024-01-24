@@ -58,7 +58,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
 
     public void saveUser(String name, String lastName, byte age) {
         String sql = """
-                INSERT INTO kata.UsersTable (
+                INSERT INTO UsersTable (
                 name, lastName, age
                 ) VALUES (?, ?, ?);
                 """;
@@ -75,7 +75,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
     }
 
     public void removeUserById(long id) {
-        String sql = "DELETE FROM kata.UsersTable WHERE ID=?";
+        String sql = "DELETE FROM UsersTable WHERE ID=?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
@@ -112,7 +112,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
 
     public void cleanUsersTable() {
 
-        String sql = "DELETE FROM kata.userstable";
+        String sql = "DELETE FROM userstable";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.executeUpdate();
