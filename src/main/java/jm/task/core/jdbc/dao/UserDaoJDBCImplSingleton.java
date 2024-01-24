@@ -88,7 +88,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
-        String sql = "SELECT id, name, lastName, age from kata.UsersTable";
+        String sql = "SELECT id, name, lastName, age from UsersTable";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
