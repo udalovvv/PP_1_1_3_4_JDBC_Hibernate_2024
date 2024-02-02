@@ -1,6 +1,10 @@
 package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.exeption.JDBCConnectionException;
+import jm.task.core.jdbc.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +35,19 @@ public class Util {
             throw new JDBCConnectionException("database connection error", e);
         }
         return connection;
+    }
+
+    public static Session getSession(){
+        try {
+            Configuration configuration = new Configuration()
+                    .addAnnotatedClass(User.class);
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            System.out.println("Connection OK");
+            return sessionFactory.getCurrentSession();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return null;
     }
 
 }
