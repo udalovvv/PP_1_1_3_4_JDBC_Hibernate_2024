@@ -26,6 +26,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
         return INSTANCE;
     }
 
+    @Override
     public void createUsersTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS UsersTable(
@@ -44,6 +45,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
         LOGGER.log(Level.INFO, "DB created successful by JDBC");
     }
 
+    @Override
     public void dropUsersTable() {
 
         String sql = "DROP TABLE IF EXISTS UsersTable";
@@ -56,6 +58,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
         LOGGER.log(Level.INFO, "DB deleted successfully by JDBC");
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         String sql = """
                 INSERT INTO UsersTable (
@@ -74,6 +77,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
         LOGGER.log(Level.INFO, "User successfully saved by JDBC");
     }
 
+    @Override
     public void removeUserById(long id) {
         String sql = "DELETE FROM UsersTable WHERE ID=?";
 
@@ -86,6 +90,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
         LOGGER.log(Level.INFO, "User successfully deleted by id by JDBC");
     }
 
+    @Override
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
         String sql = "SELECT id, name, lastName, age from UsersTable";
@@ -110,6 +115,7 @@ public class UserDaoJDBCImplSingleton implements UserDao {
         return userList;
     }
 
+    @Override
     public void cleanUsersTable() {
 
         String sql = "DELETE FROM userstable";
